@@ -1,15 +1,13 @@
 import type { SignatureData } from '../types';
 
-// Social media icon URLs - base64 encoded PNGs for maximum email client compatibility
+// Social media icon URLs - using reliable hosted images for email compatibility
 const ICONS = {
-  // LinkedIn icon (blue, 24x24)
-  linkedin:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA8UlEQVR4nO2VwQrCMBBE3/+/6k8IHkQQD4IXRfDiQbx48SB48OLBg+BBEAQPHrwIij+gFoZKabpJ2tgFCW3SzmNm0yYppZRSXyAHjsAFeANPYA8U/1ZgA9zt7PpX4ACMf61ADVxt4gZYhBZYAjeb/GLyUCkwsQe1LW5CClRW4GETj0MK5FbgYvLCCoTMxS1wAwrXxWbA2RayeRu4tbkz1sCzzd/bQgd0gWc28dUKuIpZAlNgAdSBJTCzdcOmfQMHW0S76czcXkpd3RGoKFCxNagpkNvPT7afK6XU/yL0Pd0baMYLiNFb9PeQjR9SSqkv8QaFuHVHsMVW0wAAAABJRU5ErkJggg==',
-  // Facebook icon (blue, 24x24)
-  facebook:
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA9UlEQVR4nO2VQQrCMBBF3/1v1ZsILkQQF4LgRhBciCC4EEF04UJcuBAERFy4cCEo/oBWGJRKm9hJpQuFhrbpfGYmkzZKKaVUEGTAGXgAN+AFHIEs+FZgC1zt7PFX4AyMg20FlsDZJr4Yd1ApMDQHlS0uxQpkVuBs8swKhMrFLXAHUteF5sDZFrJ5K7i1uRvWwNPOP9pCB7SBZzbx1Qq4iFkDC2AJlIE1MLN1/aZ9BwebRLvp3NxeSl1dEcgoUDE1KCiQ2c+Ptp8rpdT/IvQ97Ruohwuo0Vv095CNb1JKqS/xBklidI/fRjuGAAAAAElFTkSuQmCC',
-  // X/Twitter icon (black, 24x24)
-  x: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA7klEQVR4nO2VwQrCMAyG//+v+hPBgyCIB0FwI4gXL4IHL148eBB8g1oYKmubrW0OgpA2bfLxp01aSinllPpCAZyAO/ACnsAeKH6twBa42tnpr8AZGAXbCqyAi018Ne5QUmBsDmpb3IQUKKzAxeS5FQiVi1vgDqSuC82Bqy1k81Zwa3MXrIGnzb/bQge0gWc28c0KuIpZAAtoA1VgDcxs3ahp38DRFtFuOje3l1JXVwQKClRsDQoKZPbzk+3nSin1vwh9T7sGGvEC6uhb9PeQjR9SSqlv4gNBBnTmwHi33QAAAABJRU5ErkJggg==',
+  // LinkedIn icon - official brand color
+  linkedin: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg',
+  // Facebook icon - official brand color
+  facebook: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/facebook.svg',
+  // X (Twitter) icon
+  x: 'https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg',
 };
 
 export const generateSignatureHTML = (data: SignatureData): string => {
@@ -19,17 +17,17 @@ export const generateSignatureHTML = (data: SignatureData): string => {
   const socialIcons = [];
   if (linkedinUrl) {
     socialIcons.push(
-      `<a href="${linkedinUrl}" style="text-decoration: none; margin-right: 8px;"><img src="${ICONS.linkedin}" alt="LinkedIn" width="24" height="24" style="display: inline-block; vertical-align: middle; border: 0;"></a>`
+      `<a href="${linkedinUrl}" style="text-decoration: none; margin-right: 8px; display: inline-block;"><img src="${ICONS.linkedin}" alt="LinkedIn" width="20" height="20" style="display: block; border: 0; filter: invert(30%) sepia(95%) saturate(2878%) hue-rotate(190deg) brightness(95%) contrast(101%);"></a>`
     );
   }
   if (facebookUrl) {
     socialIcons.push(
-      `<a href="${facebookUrl}" style="text-decoration: none; margin-right: 8px;"><img src="${ICONS.facebook}" alt="Facebook" width="24" height="24" style="display: inline-block; vertical-align: middle; border: 0;"></a>`
+      `<a href="${facebookUrl}" style="text-decoration: none; margin-right: 8px; display: inline-block;"><img src="${ICONS.facebook}" alt="Facebook" width="20" height="20" style="display: block; border: 0; filter: invert(31%) sepia(92%) saturate(2595%) hue-rotate(205deg) brightness(101%) contrast(96%);"></a>`
     );
   }
   if (xUrl) {
     socialIcons.push(
-      `<a href="${xUrl}" style="text-decoration: none;"><img src="${ICONS.x}" alt="X" width="24" height="24" style="display: inline-block; vertical-align: middle; border: 0;"></a>`
+      `<a href="${xUrl}" style="text-decoration: none; display: inline-block;"><img src="${ICONS.x}" alt="X" width="20" height="20" style="display: block; border: 0;"></a>`
     );
   }
 
