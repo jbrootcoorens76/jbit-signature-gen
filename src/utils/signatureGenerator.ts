@@ -1,12 +1,15 @@
 import type { SignatureData } from '../types';
 
-// Social media icon URLs (using reliable CDN)
+// Social media icon URLs - base64 encoded PNGs for maximum email client compatibility
 const ICONS = {
+  // LinkedIn icon (blue, 24x24)
   linkedin:
-    'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%230077B5" viewBox="0 0 24 24"%3E%3Cpath d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/%3E%3C/svg%3E',
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA8UlEQVR4nO2VwQrCMBBE3/+/6k8IHkQQD4IXRfDiQbx48SB48OLBg+BBEAQPHrwIij+gFoZKabpJ2tgFCW3SzmNm0yYppZRSXyAHjsAFeANPYA8U/1ZgA9zt7PpX4ACMf61ADVxt4gZYhBZYAjeb/GLyUCkwsQe1LW5CClRW4GETj0MK5FbgYvLCCoTMxS1wAwrXxWbA2RayeRu4tbkz1sCzzd/bQgd0gWc28dUKuIpZAlNgAdSBJTCzdcOmfQMHW0S76czcXkpd3RGoKFCxNagpkNvPT7afK6XU/yL0Pd0baMYLiNFb9PeQjR9SSqkv8QaFuHVHsMVW0wAAAABJRU5ErkJggg==',
+  // Facebook icon (blue, 24x24)
   facebook:
-    'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%231877F2" viewBox="0 0 24 24"%3E%3Cpath d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/%3E%3C/svg%3E',
-  x: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="%23000000" viewBox="0 0 24 24"%3E%3Cpath d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/%3E%3C/svg%3E',
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA9UlEQVR4nO2VQQrCMBBF3/1v1ZsILkQQF4LgRhBciCC4EEF04UJcuBAERFy4cCEo/oBWGJRKm9hJpQuFhrbpfGYmkzZKKaVUEGTAGXgAN+AFHIEs+FZgC1zt7PFX4AyMg20FlsDZJr4Yd1ApMDQHlS0uxQpkVuBs8swKhMrFLXAHUteF5sDZFrJ5K7i1uRvWwNPOP9pCB7SBZzbx1Qq4iFkDC2AJlIE1MLN1/aZ9BwebRLvp3NxeSl1dEcgoUDE1KCiQ2c+Ptp8rpdT/IvQ97Ruohwuo0Vv095CNb1JKqS/xBklidI/fRjuGAAAAAElFTkSuQmCC',
+  // X/Twitter icon (black, 24x24)
+  x: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA7klEQVR4nO2VwQrCMAyG//+v+hPBgyCIB0FwI4gXL4IHL148eBB8g1oYKmubrW0OgpA2bfLxp01aSinllPpCAZyAO/ACnsAeKH6twBa42tnpr8AZGAXbCqyAi018Ne5QUmBsDmpb3IQUKKzAxeS5FQiVi1vgDqSuC82Bqy1k81Zwa3MXrIGnzb/bQge0gWc28c0KuIpZAAtoA1VgDcxs3ahp38DRFtFuOje3l1JXVwQKClRsDQoKZPbzk+3nSin1vwh9T7sGGvEC6uhb9PeQjR9SSqlv4gNBBnTmwHi33QAAAABJRU5ErkJggg==',
 };
 
 export const generateSignatureHTML = (data: SignatureData): string => {
